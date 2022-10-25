@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  database_ignite: #ESSE É O NOME DO SERVICE QUE DEVE ESTAR NO ARQUIVO DE CRIAÇÃO DE CONEXÃO
+    image: postgres
+    container_name: fin_api
+    # restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=fin_api
+    volumes:
+      - pgdata:/data/postgres
+
+
+
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.10.1.0/24
+
+volumes:
+  pgdata:
+    driver: local
+
